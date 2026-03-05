@@ -11,10 +11,11 @@ public class ConverterApp {
 
         while (running) {
             System.out.println(" --- Converter App --- ");
-            System.out.println(" 1. Length Converter ");
-            System.out.println(" 2. BMI calculator");
-            System.out.println(" 3. Weight Converter ");
-            System.out.println(" 4. Exit ");
+            System.out.println(" 1. Data Storage Converter ");
+            System.out.println(" 2. Length Converter ");
+            System.out.println(" 3. BMI calculator");
+            System.out.println(" 4. Weight Converter ");
+            System.out.println(" 5. Exit ");
             System.out.println(" Choose an option: ");
 
             int choice = scanner.nextInt();
@@ -22,7 +23,27 @@ public class ConverterApp {
             LocalTime currentTime = LocalTime.now();
 
             switch (choice) {
-                case 1: //Length
+                case 1://Data Storage
+                    System.out.println("Enter the amount of data: ");
+                    double value = scanner.nextDouble();
+                    System.out.println("1. KB => MB, 2. MB => GB, 3. GB => MB, 4. MB => KB ");
+                    int type = scanner.nextInt();
+
+                    if (type == 1) {
+                        System.out.println("Result: " + kbToMb(value) + " MB ");
+                    } else if (type == 2) {
+                        System.out.println("Result: " + mbToGb(value) + " GB ");
+                    } else if (type == 3) {
+                        System.out.println("Result: " + gbToMb(value) + " MB ");
+                    } else if (type == 4) {
+                        System.out.println("Result: " + mbToKb(value) + " KB ");
+                    } else {
+                        System.out.println("Invalid entry");
+                    }
+                    System.out.println("Converted at: " + currentDate + " " + currentTime);
+                    break;
+
+                case 2: //Length
                     System.out.println("Enter the length: ");
                     double length = scanner.nextDouble();
                     System.out.println("1. m => km or 2. km => m: ");
@@ -36,10 +57,10 @@ public class ConverterApp {
                     System.out.println("Converted at: " + currentDate + " " + currentTime);
                     break;
 
-                case 2: //BMI
+                case 3: //BMI
                     System.out.println("Enter weight (kg): ");
                     double weigh = scanner.nextDouble();
-                    System.out.println("Enter height (m): ");
+                    System.out.println("Enter height in meters using comma: ");
                     double height = scanner.nextDouble();
 
                     calculateBMI(weigh,height);
@@ -47,7 +68,7 @@ public class ConverterApp {
                     System.out.println("Converted at: " + currentDate +" " + currentTime);
                     break;
 
-                case 3://Weight
+                case 4://Weight
                     System.out.println("Enter the value: ");
                     double weight = scanner.nextDouble();
                     System.out.println("1. kg to g, 2. g to kg: ");
@@ -61,13 +82,13 @@ public class ConverterApp {
                     System.out.println("Converted at: " + currentDate + " " + currentTime);
                     break;
 
-                case 4://Exit
+                case 5://Exit
                     System.out.println("Exiting....Goodbye!");
                     running = false;
                     break;
 
                 default:
-                    System.out.println("Please enter a valid option (1-4)");
+                    System.out.println("Please enter a valid option (1-5)");
             }
         }
         scanner.close();
@@ -92,6 +113,19 @@ public class ConverterApp {
             System.out.println("Category: Obesity");
         }
         }
+
+    public static double kbToMb(double kb) {
+        return kb / 1024.0;
+    }
+    public static double mbToGb(double mb){
+        return mb / 1024.0;
+    }
+    public static double gbToMb(double gb){
+        return gb * 1024.0;
+    }
+    public static double mbToKb(double mb) {
+        return mb * 1024.0;
+    }
     public static double tokm(double m){
         return m / 1000.0;
     }
