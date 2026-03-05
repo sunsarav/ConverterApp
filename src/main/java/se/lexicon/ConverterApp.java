@@ -5,7 +5,8 @@ import java.time.LocalTime;
 import java.util.Scanner;
 
 public class ConverterApp {
-    static void main() {
+    static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
@@ -138,8 +139,8 @@ public class ConverterApp {
     public static double tog(double kg){
         return kg * 1000.0;
     }
-
 }
+
 
 
 
