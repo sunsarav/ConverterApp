@@ -33,12 +33,19 @@ public class ConverterApp {
                     } else {
                         System.out.println("Result: " + tom(length) + "m");
                     }
-                    System.out.println("Converted at: " + currentDate + currentTime);
+                    System.out.println("Converted at: " + currentDate + " " + currentTime);
                     break;
 
                 case 2: //BMI
+                    System.out.println("Enter weight (kg): ");
+                    double weigh = scanner.nextDouble();
+                    System.out.println("Enter height (m): ");
+                    double height = scanner.nextDouble();
 
-                    System.out.println("Converted at: " + currentDate + currentTime);
+                    calculateBMI(weigh,height);
+
+                    System.out.println("Converted at: " + currentDate +" " + currentTime);
+                    break;
 
                 case 3://Weight
                     System.out.println("Enter the value: ");
@@ -51,7 +58,7 @@ public class ConverterApp {
                     } else {
                         System.out.println("Result: " + tog(weight) + "g");
                     }
-                    System.out.println("Converted at: " + currentDate + currentTime);
+                    System.out.println("Converted at: " + currentDate + " " + currentTime);
                     break;
 
                 case 4://Exit
@@ -65,6 +72,26 @@ public class ConverterApp {
         }
         scanner.close();
     }
+    //Methods
+        public static void calculateBMI(double weigh, double height) {
+        double bmi = weigh / (height * height);
+
+        //Using printf instead of println for decimal formatting to work
+        // %.2f limits the result to 2 decimal places
+
+        System.out.printf("Your BMI is: %.2f%n", bmi);
+
+        //Category Logic
+        if (bmi < 18.5) {
+            System.out.println("Category: Underweight");
+        } else if (bmi < 25) {
+            System.out.println("Category: Normal weight");
+        } else if (bmi < 30) {
+            System.out.println("Category: Over weight");
+        }  else {
+            System.out.println("Category: Obesity");
+        }
+        }
     public static double tokm(double m){
         return m / 1000.0;
     }
@@ -77,6 +104,7 @@ public class ConverterApp {
     public static double tog(double kg){
         return kg * 1000.0;
     }
+
 }
 
 
