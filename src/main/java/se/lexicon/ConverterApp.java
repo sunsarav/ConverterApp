@@ -31,13 +31,13 @@ public class ConverterApp {
                     int type = scanner.nextInt();
 
                     if (type == 1) {
-                        System.out.println("Result: " + kbToMb(value) + " MB ");
+                        System.out.println("Result: " + ConverterLogic.kbToMb(value) + " MB ");
                     } else if (type == 2) {
-                        System.out.println("Result: " + mbToGb(value) + " GB ");
+                        System.out.println("Result: " + ConverterLogic.mbToGb(value) + " GB ");
                     } else if (type == 3) {
-                        System.out.println("Result: " + gbToMb(value) + " MB ");
+                        System.out.println("Result: " + ConverterLogic.gbToMb(value) + " MB ");
                     } else if (type == 4) {
-                        System.out.println("Result: " + mbToKb(value) + " KB ");
+                        System.out.println("Result: " + ConverterLogic.mbToKb(value) + " KB ");
                     } else {
                         System.out.println("Invalid entry");
                     }
@@ -51,9 +51,9 @@ public class ConverterApp {
                     int unit = scanner.nextInt();
 
                     if (unit == 1) {
-                        System.out.println("Result: " + tokm(length) + "km");
+                        System.out.println("Result: " + ConverterLogic.tokm(length) + "km");
                     } else {
-                        System.out.println("Result: " + tom(length) + "m");
+                        System.out.println("Result: " + ConverterLogic.tom(length) + "m");
                     }
                     System.out.println("Converted at: " + currentDate + " " + currentTime);
                     break;
@@ -64,9 +64,22 @@ public class ConverterApp {
                     System.out.println("Enter height in meters using comma: ");
                     double height = scanner.nextDouble();
 
-                    calculateBMI(weigh,height);
+                    double bmi = ConverterLogic.calculateBMI(weigh, height);
+                    //Using printf instead of println for decimal formatting to work
+                    // %.2f limits the result to 2 decimal places
+                    System.out.printf("Your BMI is: %.2f%n", bmi);
 
-                    System.out.println("Converted at: " + currentDate +" " + currentTime);
+                    //Category Logic
+                    if (bmi < 18.5) {
+                        System.out.println("Category: Underweight");
+                    } else if (bmi < 25) {
+                        System.out.println("Category: Normal weight");
+                    } else if (bmi < 30) {
+                        System.out.println("Category: Over weight");
+                    } else {
+                        System.out.println("Category: Obesity");
+                    }
+                    System.out.println("Converted at: " + currentDate + " " + currentTime);
                     break;
 
                 case 4://Weight
@@ -76,9 +89,9 @@ public class ConverterApp {
                     int weightUnit = scanner.nextInt();
 
                     if (weightUnit == 1) {
-                        System.out.println("Result: " + tokg(weight) + "kg");
+                        System.out.println("Result: " + ConverterLogic.tokg(weight) + "kg");
                     } else {
-                        System.out.println("Result: " + tog(weight) + "g");
+                        System.out.println("Result: " + ConverterLogic.tog(weight) + "g");
                     }
                     System.out.println("Converted at: " + currentDate + " " + currentTime);
                     break;
@@ -94,52 +107,13 @@ public class ConverterApp {
         }
         scanner.close();
     }
-    //Methods
-        public static void calculateBMI(double weigh, double height) {
-        double bmi = weigh / (height * height);
-
-        //Using printf instead of println for decimal formatting to work
-        // %.2f limits the result to 2 decimal places
-
-        System.out.printf("Your BMI is: %.2f%n", bmi);
-
-        //Category Logic
-        if (bmi < 18.5) {
-            System.out.println("Category: Underweight");
-        } else if (bmi < 25) {
-            System.out.println("Category: Normal weight");
-        } else if (bmi < 30) {
-            System.out.println("Category: Over weight");
-        }  else {
-            System.out.println("Category: Obesity");
-        }
-        }
-
-    public static double kbToMb(double kb) {
-        return kb / 1024.0;
-    }
-    public static double mbToGb(double mb){
-        return mb / 1024.0;
-    }
-    public static double gbToMb(double gb){
-        return gb * 1024.0;
-    }
-    public static double mbToKb(double mb) {
-        return mb * 1024.0;
-    }
-    public static double tokm(double m){
-        return m / 1000.0;
-    }
-    public static double tom(double km){
-        return km * 1000.0;
-    }
-    public static double tokg(double g){
-        return g / 1000.0;
-    }
-    public static double tog(double kg){
-        return kg * 1000.0;
-    }
 }
+
+
+
+
+
+
 
 
 
